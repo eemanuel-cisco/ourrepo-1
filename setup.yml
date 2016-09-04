@@ -5,6 +5,8 @@
     become: yes
     become_method: sudo
   - name: clone ourrepo
-    git: repo=https://github.com/shimib/ourrepo.git dest=~/ourrepo
+    git: repo=https://github.com/shimib/ourrepo.git dest=~/ourrepo update=no
   - name: clone petclinic
     git: repo=https://github.com/shimib/spring-petclinic.git dest=~/petclinic
+  - name: download and unzip maven
+    unarchive: src=http://apache.mivzakim.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip dest=~ copy=no creates=~/apache-maven-3.3.9
