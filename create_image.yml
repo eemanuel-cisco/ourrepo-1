@@ -1,0 +1,8 @@
+- hosts: localhost
+  tasks:
+  - name: install docker-py
+    become: yes
+    become_method: sudo
+    pip: name=docker-py  version=1.9.0
+  - name: create petclinic image
+    docker_image: path=~/mydocker name=petclinic
