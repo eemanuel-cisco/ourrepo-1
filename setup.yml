@@ -20,8 +20,8 @@
     yum: name=docker state=latest
     become: yes
     become_method: sudo
-  - name: add docker group to ec2_user
-    user: append=yes groups=docker name=ec2_user
+  - name: add docker group to ec2-user
+    user: append=yes groups=docker name=ec2-user
     become: yes
     become_method: sudo
   - name: start docker service
