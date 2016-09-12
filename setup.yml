@@ -16,4 +16,15 @@
     lineinfile: dest=~/.bash_profile line="export M2=${M2_HOME}/bin" regexp="^export M2=.*" insertafter="^export M2_HOME.*"
   - name: add Maven to PATH
     lineinfile: dest=~/.bash_profile line="PATH=$M2:$PATH" regexp="^PATH=$M2:$PAT.*" insertbefore="^export PATH.*"
-
+  - name: install docker
+    yum: name=docker state=latest
+    become: yes
+    become_method: sudo
+  - name: add docker group to ec2_user
+    user: append=yes groups=docker name=ec2_user
+    become: yes
+    become_method: sudo
+  - name: start docker service
+    service: name=docker state=started
+    become: yes
+    become_method: sudo
