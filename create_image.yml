@@ -5,7 +5,7 @@
     become_method: sudo
     pip: name=docker-py  version=1.9.0
   - name: create mydocker directory
-    file: path=/home/ec2-user/mydocker state=directory mode=777
+    file: path=/home/ec2-user/mydocker state=directory mode=0777
   - name: copy Dockerfile to mydocker
     copy: src=Dockerfile dest=/home/ec2-user/mydocker/Dockerfile
   - name: create petclinic image
