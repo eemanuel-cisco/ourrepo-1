@@ -1,0 +1,10 @@
+docker ps --- list running containers
+docker ps -a ---- list all containers
+docker rm -f `docker ps -a -q` ----- destroy all containers
+docker psi --- list all images
+
+docker run -it IMAGE_NAME ---- start container
+
+
+
+
