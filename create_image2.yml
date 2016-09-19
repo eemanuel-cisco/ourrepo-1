@@ -1,0 +1,14 @@
+- hosts: localhost
+  vars:
+    petclinic_url: http://52.57.100.230:8081/artifactory/libs-snapshot-local/org/springframework/samples/spring-petclinic/4.2.6-SNAPSHOT/spring-petclinic-4.2.6-20160811.132556-4.war
+  tasks:
+  - name: install docker-py
+    become: yes
+    become_method: sudo
+    pip: name=docker-py  version=1.9.0
+  - name: create mydocker directory
+    file: path=/home/ec2-user/mydocker state=directory mode=0777
+  - name: copy Dockerfile to mydocker
+    template: src=Dockerfile.j2 dest=/home/ec2-user/mydocker/Dockerfile
+  - name: create petclinic image
+    docker_image: path=/home/ec2-user/mydocker name=petclinic
